@@ -1,0 +1,46 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class TestClass {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int N = s.nextInt();
+		int testCases = s.nextInt();
+		String[] seqList = new String[N];
+		/*Arrays.fill(seqList, "");*/
+		int lastAnswer=0;
+		int a=0, x=0, y=0;
+		for(int i=0;i<testCases;i++)
+		{
+			a = s.nextInt();
+			x = s.nextInt();
+			y = s.nextInt();
+			if(a==1) {
+				int val = (x^lastAnswer)%N;
+				if(seqList[val]!=null && seqList[val].length() >= 1) {
+					seqList[val] +=","+ y ;
+				}
+				else
+					seqList[val] = ""+y;
+			}
+			else if(a==2) {
+				System.out.println(x);
+				System.out.println(lastAnswer);
+				System.out.println(N);
+				int val = (x^lastAnswer)%N;
+				String[] inter = new String[seqList[val].split(",").length];
+				int charat = y%(seqList[val].split(",").length);
+				if(seqList[val].contains(",")) {
+					inter = seqList[val].split(",");
+					lastAnswer = Integer.parseInt(inter[charat]);
+					System.out.println("lastAnswer "+lastAnswer);
+				}
+				else {
+					lastAnswer = Integer.parseInt(seqList[val]);
+					System.out.println("lastAnswer "+lastAnswer);
+				}				
+			}
+		}
+    }
+}
