@@ -1,0 +1,25 @@
+package demo;
+
+import java.util.Scanner;
+
+public class leftRotation {
+
+	public static void main(String[] args) {
+		Scanner s = new Scanner(System.in);
+		int n = s.nextInt();
+		int c = s.nextInt();;
+		int a[] = new int[n];
+		int b[] = new int[n];
+		for(int i=0;i<n;i++) {
+			a[i] = s.nextInt();
+			int newLoc = 0;
+			newLoc = i-c;
+			if(newLoc < 0) {
+				newLoc = n + newLoc;
+			}
+			b[newLoc] = a[i];
+		}		
+		for(int i : b)
+			System.out.print(i +" ");
+	}
+}
