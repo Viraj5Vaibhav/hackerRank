@@ -1,0 +1,68 @@
+import java.io.*;
+import java.math.*;
+import java.security.*;
+import java.text.*;
+import java.util.*;
+import java.util.ArrayList;
+import java.util.concurrent.*;
+import java.util.function.*;
+import java.util.regex.*;
+import java.util.stream.*;
+import static java.util.stream.Collectors.joining;
+import static java.util.stream.Collectors.toList;
+
+public class Solution {
+
+    // Complete the migratoryBirds function below.
+    static int migratoryBirds(List<Integer> arr) {
+        HashMap<Integer, Integer> BirdFrequency = new HashMap<Integer, Integer>();
+        int count1 = 0, count2 = 0, count3 = 0, count4 = 0, count5 = 0, count = 0;
+        int max=0;
+        for(Integer i : arr){
+            if(i==1)
+                count1++;
+            else if(i==2)
+                count2++;
+            else if(i==3)
+                count3++;
+            else if(i==4)
+                count4++;
+            else if(i==5)
+                count5++;
+        }
+
+        BirdFrequency.put(1,count1);
+        BirdFrequency.put(2,count2);
+        BirdFrequency.put(3,count3);
+        BirdFrequency.put(4,count4);
+        BirdFrequency.put(5,count5);
+
+        for (int i : BirdFrequency.keySet()) {
+            if(max<BirdFrequency.get(i)){
+                max = BirdFrequency.get(i);
+                count = i;
+            }
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        int arrCount = Integer.parseInt(bufferedReader.readLine().trim());
+
+        List<Integer> arr = Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
+            .map(Integer::parseInt)
+            .collect(toList());
+
+        int result = migratoryBirds(arr);
+
+        bufferedWriter.write(String.valueOf(result));
+        bufferedWriter.newLine();
+
+        bufferedReader.close();
+        bufferedWriter.close();
+    }
+}
