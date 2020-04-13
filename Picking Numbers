@@ -21,22 +21,24 @@ class Result {
 
     public static int pickingNumbers(List<Integer> a) {
         ArrayList<String> NumberSet = new ArrayList<String>();
-        int count = 0, index = 0;
+        ArrayList<Integer> SpaceSet = new ArrayList<Integer>();
+        int count = 0, index = 0, space =0;
         Collections.sort(a);
+        for(int i:a)
+            System.out.print(i+" ");
         for(int i = 0;i<a.size();i++){
+            count = 0;
             NumberSet.add(a.get(i).toString());
             for(int j = i+1; j<a.size();j++){
-                if(a.get(j)-a.get(i)<=1)
+                if(a.get(j)-a.get(i)<=1){
                     NumberSet.set(i, NumberSet.get(i)+" "+a.get(j).toString());
+                    count++;
+                }
             }
-            if(count<NumberSet.get(i).toString().length()){
-                count = NumberSet.get(i).toString().length();
-                index = i;
-            }
+            SpaceSet.add(count);
         }
-        System.out.println(NumberSet.get(index).replaceAll(" ",""));
-        count = NumberSet.get(index).replaceAll(" ","").length();
-        return count;
+        //count = NumberSet.get(index).replaceAll(" ","").length();
+        return Collections.max(SpaceSet)+1;
     }
 }
 
