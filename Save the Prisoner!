@@ -10,20 +10,9 @@ public class Solution {
 
     // Complete the saveThePrisoner function below.
     static int saveThePrisoner(int n, int m, int s) {
-        int sweets = 0, badseat = 0;
-        for(int i=s;i<=n;i++){
-            if(sweets!=m){
-                sweets++;
-            }
-            if(i==n && sweets!=m){
-                i=0;
-            }
-            if(sweets == m){
-                badseat = i;
-                break;
-            }
-        }
-        return badseat;
+        if(((m+s-1)%n)==0)
+            return n;
+        return (m+s-1)%n;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
