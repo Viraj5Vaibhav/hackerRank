@@ -1,0 +1,80 @@
+Given the time in numerals we may convert it into words, as shown below:
+
+At , use o' clock. For , use past, and for  use to. Note the space between the apostrophe and clock in o' clock. Write a program which prints the time in words for the input given in the format described.
+
+Function Description
+
+Complete the timeInWords function in the editor below.
+
+timeInWords has the following parameter(s):
+
+int h: the hour of the day
+int m: the minutes after the hour
+Returns
+
+string: a time string as described
+Input Format
+
+The first line contains , the hours portion The second line contains , the minutes portion
+
+Solution:
+function timeInWords(h, m) {
+  var finalResult;
+  if(m==0)
+  {
+    finalResult = numberToName(h) + " o' clock";
+  }
+  if(m==15){
+    finalResult = "quarter past "+numberToName(h);
+  }
+  else if(m==30){
+    finalResult = "half past "+numberToName(h);
+  }
+  else if(m >0 && m<10)
+  {
+    finalResult = numberToName(m)+" minute past "+ numberToName(h);
+  }
+  else if(m >9 && m<30)
+  {
+    finalResult = numberToName(m)+" minutes past "+ numberToName(h);
+  }
+  
+  else if(m > 30 && m<60)
+  {
+    if(m==45)
+    {
+      finalResult = "quarter to "+numberToName(h+1);
+    }
+    else{
+      finalResult = numberToName(60-m) + " minutes to "+numberToName(h+1);
+    }
+  }
+  return finalResult;
+}
+
+function numberToName(val){//10,15,20,25
+  var singles = ["one","two","three","four","five","six","seven","eight","nine"];
+  var tens = ["eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen"];
+  var doubles = ["ten","twenty","thirty","fourty","fifty","sixty"];
+  var tensDigit = Math.floor(val/10);
+  var singlesDigit = val%10;
+  
+  console.log("tensDigit "+tensDigit);
+  console.log("singlesDigit "+singlesDigit);
+  
+  var finalName;
+  
+  if(val>10 && val <20)
+    finalName = tens[singlesDigit-1];
+  else if(val < 10)
+    finalName = singles[val-1];
+  else if(singlesDigit == 0)
+    finalName = doubles[tensDigit-1];
+  else
+    finalName = doubles[tensDigit-1] + " " + singles[singlesDigit-1]
+    
+    console.log(finalName);
+    
+  return finalName;
+  
+}
