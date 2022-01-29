@@ -1,0 +1,27 @@
+A driver is driving on the freeway. The check engine light of his vehicle is on, and the driver wants to get service immediately. Luckily, a service lane runs parallel to the highway. It varies in width along its length.
+
+Paradise Highway
+
+You will be given an array of widths at points along the road (indices), then a list of the indices of entry and exit points. Considering each entry and exit point pair, calculate the maximum size vehicle that can travel that segment of the service lane safely.
+
+
+Solution:
+function serviceLane(n, cases, widths) {
+    var finalArr = [];
+    for(var i=0;i<cases.length;i++){
+      
+      finalArr.push(min(widths.slice(cases[i][0],cases[i][1]+1)));
+    }
+    
+    return finalArr;
+}
+
+
+function min(arr){
+  var smallest = arr[0];
+  for(var i=1;i<arr.length;i++){
+    if(smallest > arr[i])
+      smallest = arr[i];
+  }
+  return smallest;
+}
