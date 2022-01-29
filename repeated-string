@@ -1,0 +1,29 @@
+Problem Statement: https://www.hackerrank.com/challenges/repeated-string/problem
+
+Code:
+/*
+ * Complete the 'repeatedString' function below.
+ *
+ * The function is expected to return a LONG_INTEGER.
+ * The function accepts following parameters:
+ *  1. STRING s
+ *  2. LONG_INTEGER n
+ */
+
+function repeatedString(s, n) {
+  let count = 0;
+  count = checkAs(s);
+  count = count*Math.floor(n/s.length);
+  count += checkAs(s.substr(0,n%s.length));
+  return count;
+}
+
+function checkAs (s){
+  var count=0;
+  for(var i=0;i<s.length;i++){
+    if(s[i]=='a')
+      count++;
+  }
+  
+  return count;
+}
